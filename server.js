@@ -31,7 +31,7 @@ rtD9nKk3hmSjMealJCVjj5DJB8aH+CfR+fv0rW+t5JO8Ra5z2sG9kLA/0aX3ePMk
 -----END PUBLIC KEY-----`;
 
     const reqtimestamp = req.headers.timestamp
-    console.log (req.headers)
+    //console.log (req.headers)
     const reqsignature = Buffer.from(req.get(sigHeaderName) || '', 'utf8')
     fs.writeFileSync('sig.txt', reqsignature, 'utf-8');
     const deletedata = 'digest-alg=RSA-SHA; key-id=KEY:RSA:rsf.org; data='
