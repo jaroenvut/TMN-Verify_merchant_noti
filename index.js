@@ -4,8 +4,10 @@ const express = require('express')
 const app = express()
 const fs = require("fs")
 const crypto = require("crypto")
+const bodyParser = require('body-parser');
 const { json } = require('body-parser')
 const sigHeaderName = 'content-signature'
+
 
 const TMW_PUBLIC_KEY = fs.readFileSync('tmnpubkey.pem', 'utf-8')
 
@@ -31,22 +33,17 @@ rtD9nKk3hmSjMealJCVjj5DJB8aH+CfR+fv0rW+t5JO8Ra5z2sG9kLA/0aX3ePMk
 -----END PUBLIC KEY-----`;
 
     const reqtimestamp = req.headers.timestamp
-    //console.log (req.headers)
     const reqsignature = Buffer.from(req.get(sigHeaderName) || '', 'utf8')
-    //console.log (reqsignature.toString())
-    //const reqsignature = Buffer.from(req.get(sigHeaderName))
     const presig = reqsignature.toString()
-    console.log (presig)
-    //fs.writeFileSync('sig.txt', reqsignature, 'utf-8');
-    const deletedata = 'digest-alg=RSA-SHA; key-id=KEY:RSA:rsf.org; data='
-    //const presig = fs.readFileSync('sig.txt', 'utf-8')
-    const encodedSignature = presig.replace(new RegExp(deletedata), '')
-    //const encodedSignature = reqsignature.replace(new RegExp(deletedata), '')
-    //fs.writeFileSync('sigfinal.txt', encodedSignature, 'utf-8');
+    const encodedSignature = presig.replace('digest-alg=RSA-SHA; key-id=KEY:RSA:rsf.org; data=', '')
+    console.log (`encodedSignature is : `, encodedSignature)
 
 // Step 2: Prepare data for verification
-//const data = reqtimestamp.concat(JSON.stringify(req.body,null,2));
-const data = reqtimestamp.concat(JSON.stringify(req.body));
+const data = reqtimestamp.concat(JSON.stringify(req.body,null,3));
+//const data = reqtimestamp.concat(JSON.stringify(req.body));
+//const reqbody = req.body
+//const data = (reqtimestamp)+(reqbody);
+console.log (`data is : `, data)
 const verifysignature = Buffer.from(encodedSignature, 'base64');
 
 // Step 3: Verify signature
@@ -68,8 +65,8 @@ console.log(`valid is : `, valid);
 
     //Returns the signature in output_format which 'base64'
     const signature = signer.sign(private_key, 'base64')
-    console.log(signature)
-    console.log (timestamp+data)
+    //console.log(signature)
+    //console.log (timestamp+data)
     //End sign signature
 
     res.header({
