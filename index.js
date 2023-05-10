@@ -33,10 +33,15 @@ rtD9nKk3hmSjMealJCVjj5DJB8aH+CfR+fv0rW+t5JO8Ra5z2sG9kLA/0aX3ePMk
     const reqtimestamp = req.headers.timestamp
     //console.log (req.headers)
     const reqsignature = Buffer.from(req.get(sigHeaderName) || '', 'utf8')
-    fs.writeFileSync('sig.txt', reqsignature, 'utf-8');
+    console.log (reqsignature.toString())
+    //const reqsignature = Buffer.from(req.get(sigHeaderName))
+    const presig = reqsignature.toString()
+    console.log (presig)
+    //fs.writeFileSync('sig.txt', reqsignature, 'utf-8');
     const deletedata = 'digest-alg=RSA-SHA; key-id=KEY:RSA:rsf.org; data='
-    const presig = fs.readFileSync('sig.txt', 'utf-8')
+    //const presig = fs.readFileSync('sig.txt', 'utf-8')
     const encodedSignature = presig.replace(new RegExp(deletedata), '')
+    //const encodedSignature = reqsignature.replace(new RegExp(deletedata), '')
     fs.writeFileSync('sigfinal.txt', encodedSignature, 'utf-8');
 
 // Step 2: Prepare data for verification
