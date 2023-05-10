@@ -39,7 +39,7 @@ rtD9nKk3hmSjMealJCVjj5DJB8aH+CfR+fv0rW+t5JO8Ra5z2sG9kLA/0aX3ePMk
     console.log (`encodedSignature is : `, encodedSignature)
 
 // Step 2: Prepare data for verification
-const data = reqtimestamp.concat(JSON.stringify(req.body,null,3));
+const data = reqtimestamp.concat(JSON.stringify(req.body,null));
 //const data = reqtimestamp.concat(JSON.stringify(req.body));
 //const reqbody = req.body
 //const data = (reqtimestamp)+(reqbody);
