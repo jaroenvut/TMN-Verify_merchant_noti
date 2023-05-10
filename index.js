@@ -42,7 +42,7 @@ rtD9nKk3hmSjMealJCVjj5DJB8aH+CfR+fv0rW+t5JO8Ra5z2sG9kLA/0aX3ePMk
     //const presig = fs.readFileSync('sig.txt', 'utf-8')
     const encodedSignature = presig.replace(new RegExp(deletedata), '')
     //const encodedSignature = reqsignature.replace(new RegExp(deletedata), '')
-    fs.writeFileSync('sigfinal.txt', encodedSignature, 'utf-8');
+    //fs.writeFileSync('sigfinal.txt', encodedSignature, 'utf-8');
 
 // Step 2: Prepare data for verification
 const data = reqtimestamp.concat(JSON.stringify(req.body,null,2));
