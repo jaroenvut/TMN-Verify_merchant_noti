@@ -50,7 +50,7 @@ const valid = verifier.verify(TMW_PUBLIC_KEY, verifysignature, 'base64');
 console.log(`valid is : `, valid);
 
     //const data = JSON.stringify(req.body,null,2)
-    console.log (data)
+    //console.log (data)
     const notifyId = req.body.notify_id
     const body = {"status":{"code":"11111","message":"success","description":"Product has been checked out"},"data":{"notify_id":(notifyId)}}
     const body_stringify = (JSON.stringify(body))
