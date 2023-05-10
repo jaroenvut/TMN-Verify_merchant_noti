@@ -33,7 +33,7 @@ rtD9nKk3hmSjMealJCVjj5DJB8aH+CfR+fv0rW+t5JO8Ra5z2sG9kLA/0aX3ePMk
     const reqtimestamp = req.headers.timestamp
     //console.log (req.headers)
     const reqsignature = Buffer.from(req.get(sigHeaderName) || '', 'utf8')
-    console.log (reqsignature.toString())
+    //console.log (reqsignature.toString())
     //const reqsignature = Buffer.from(req.get(sigHeaderName))
     const presig = reqsignature.toString()
     console.log (presig)
@@ -45,7 +45,8 @@ rtD9nKk3hmSjMealJCVjj5DJB8aH+CfR+fv0rW+t5JO8Ra5z2sG9kLA/0aX3ePMk
     //fs.writeFileSync('sigfinal.txt', encodedSignature, 'utf-8');
 
 // Step 2: Prepare data for verification
-const data = reqtimestamp.concat(JSON.stringify(req.body,null,2));
+//const data = reqtimestamp.concat(JSON.stringify(req.body,null,2));
+const data = reqtimestamp.concat(JSON.stringify(req.body));
 const verifysignature = Buffer.from(encodedSignature, 'base64');
 
 // Step 3: Verify signature
