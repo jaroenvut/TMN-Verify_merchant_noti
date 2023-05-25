@@ -44,7 +44,22 @@ rtD9nKk3hmSjMealJCVjj5DJB8aH+CfR+fv0rW+t5JO8Ra5z2sG9kLA/0aX3ePMk
 // Step 2: Prepare data for verification
 //const data = reqtimestamp.concat(JSON.stringify(req.body,null,1));
 //const data = reqtimestamp.concat(JSON.stringify(req.body));
+
+
+exports.validateTmwWebhookRequest = (reqHeaders, reqBody) => {
+    const data = reqHeaders['Timestamp' ].concat(reqBody) ;
+    const reqsignature = reqHeaders[' Content-Signature'].split('digest-alg=RSA-SHA; key-id=KEY:RSA:rsf.org; data=') [1];
+    const verifier = crypto.createVerify(' SHA256' ) ;
+    verifier.update (data) ;
+    return verifier.verify (TMW_PUBLIC_KEY, reqsignature, 'base64') ;
+}
+
+console.log(exports)
+
+
+
 const reqbody = JSON.stringify(req.body)
+//const reqbody2 = reqbody.toString()
 const data = (reqtimestamp)+(reqbody);
 console.log (`data is : `, data)
 const verifysignature = Buffer.from(encodedSignature, 'base64');
