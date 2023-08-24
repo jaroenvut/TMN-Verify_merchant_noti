@@ -51,7 +51,8 @@ exports.validateTmwWebhookRequest = (reqHeaders, reqBody) => {
     const reqsignature = reqHeaders[' Content-Signature'].split('digest-alg=RSA-SHA; key-id=KEY:RSA:rsf.org; data=') [1];
     const verifier = crypto.createVerify(' SHA256' ) ;
     verifier.update (data) ;
-    return verifier.verify (TMW_PUBLIC_KEY, reqsignature, 'base64') ;
+    //return verifier.verify (TMW_PUBLIC_KEY, reqsignature, 'base64') ;
+    console.log(verifier.verify (TMW_PUBLIC_KEY, reqsignature, 'base64')) ;
 }
 
 console.log(exports)

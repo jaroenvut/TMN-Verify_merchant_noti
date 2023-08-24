@@ -43,7 +43,8 @@ rtD9nKk3hmSjMealJCVjj5DJB8aH+CfR+fv0rW+t5JO8Ra5z2sG9kLA/0aX3ePMk
 
 // Step 2: Prepare data for verification
 //const data = reqtimestamp.concat(JSON.stringify(req.body,null,1));
-const data = reqtimestamp.concat(JSON.stringify(req.body));
+//const data = reqtimestamp.concat(JSON.stringify(req.body));
+const data = reqtimestamp.concat(req.body);
 //const reqbody = JSON.stringify(req.body)
 //const data = (reqtimestamp)+(reqbody);
 console.log (`data is : `, data)
