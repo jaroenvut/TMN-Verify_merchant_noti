@@ -45,7 +45,7 @@ rtD9nKk3hmSjMealJCVjj5DJB8aH+CfR+fv0rW+t5JO8Ra5z2sG9kLA/0aX3ePMk
 //const data = reqtimestamp.concat(JSON.stringify(req.body,null,1));
 //const data = reqtimestamp.concat(JSON.stringify(req.body));
 //const reqbody = JSON.stringify(req.body)
-const data = (reqtimestamp)+(reqbody);
+const data = (reqtimestamp)+(req.body);
 console.log (`data is : `, data)
 const verifysignature = Buffer.from(encodedSignature, 'base64');
 
