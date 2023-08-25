@@ -21,7 +21,7 @@ const port = process.env.PORT || 3000
 
 //app.use(express.json())
 app.use(express.json())
-app.use(bodyParser.text())
+app.use(bodyParser.json())
 app.post('/', (req, res) => {
     // Step 1: Extract Data from request
 //const TMW_PUBLIC_KEY = fs.readFileSync('tmnpubkey.pem', 'utf-8')
@@ -42,10 +42,10 @@ rtD9nKk3hmSjMealJCVjj5DJB8aH+CfR+fv0rW+t5JO8Ra5z2sG9kLA/0aX3ePMk
     console.log (`encodedSignature is : `, encodedSignature)
 
 // Step 2: Prepare data for verification
-const data = reqtimestamp.concat(JSON.stringify(req.body,null,0));
+const data = reqtimestamp.concat(JSON.stringify(req.body,null,3));
 //const data = reqtimestamp.concat(JSON.stringify(req.body));
 //const reqbody = JSON.stringify(req.body)
-//const data = (reqtimestamp)+(reqbody);
+//const data = (reqtimestamp)+(req.body);
 console.log (`data is : `, data)
 const verifysignature = Buffer.from(encodedSignature, 'base64');
 
