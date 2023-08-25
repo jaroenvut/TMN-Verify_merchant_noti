@@ -44,8 +44,9 @@ rtD9nKk3hmSjMealJCVjj5DJB8aH+CfR+fv0rW+t5JO8Ra5z2sG9kLA/0aX3ePMk
 // Step 2: Prepare data for verification
 //const data = reqtimestamp.concat(JSON.stringify(req.body,null,1));
 //const data = reqtimestamp.concat(JSON.stringify(req.body));
-//const reqbody = JSON.stringify(req.body)
-const data = (reqtimestamp)+(req.body);
+const reqbody = JSON.stringify(req.body)
+//const reqbody = req.body.stringify()
+const data = (reqtimestamp)+(reqbody);
 console.log (`data is : `, data)
 const verifysignature = Buffer.from(encodedSignature, 'base64');
 
@@ -58,8 +59,8 @@ console.log(`valid is : `, valid);
     //const data = JSON.stringify(req.body,null,2)
     //console.log (data)
     const notifyId = req.body.notify_id
-    const body = {"status":{"code":"11111","message":"success","description":"Product has been checked out"},"data":{"notify_id":(notifyId)}}
-    const body_stringify = (JSON.stringify(body))
+    const resbody = {"status":{"code":"11111","message":"success","description":"Product has been checked out"},"data":{"notify_id":(notifyId)}}
+    const body_stringify = (JSON.stringify(resbody))
     const data_signature = (timestamp)+(body_stringify);
     //Signing with RSA-SHA256
     const signer = crypto.createSign('RSA-SHA256');
